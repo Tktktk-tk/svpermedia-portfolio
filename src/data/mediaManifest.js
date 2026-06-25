@@ -86,3 +86,36 @@ export const MEDIA_MANIFEST = {
     "hasFiles": true
   }
 }
+
+export const MEDIA_FILES = [
+  "./media/Videography/Brands/Project Salient/Videos/01.mp4",
+  "./media/Videography/Brands/Fabia/Videos/01.mp4",
+  "./media/Videography/Brands/Fabia/Videos/02.mp4",
+  "./media/Videography/Concerts/YT Down Under Tour/Videos/01.mp4",
+  "./media/Videography/Concerts/Esdeekid Tour/Videos/01.mp4",
+  "./media/Videography/Events/Kraniraivu/Videos/01.mp4",
+  "./media/VFX/Brands/Fabia/Gifs/01.gif",
+  "./media/VFX/Brands/Kraniraivu/Gifs/01.gif",
+  "./media/VFX/Music/2 Nights Music Video/Gifs/01.gif",
+  "./media/VFX/Music/2 Nights Music Video/Gifs/02.gif",
+  "./media/VFX/Music/2 Nights Music Video/Gifs/03.gif",
+  "./media/VFX/Music/2 Nights Music Video/Gifs/04.gif",
+  "./media/VFX/Music/2 Nights Music Video/Gifs/05.gif",
+  "./media/VFX/Music/Srilankan Flag/Videos/01.mp4",
+  "./media/VFX/Music/Srilankan Flag/Models/01.glb",
+  "./media/Photography/Brands/Fabia/Photos/01.jpg",
+  "./media/Photography/Brands/Fabia/Photos/02.jpg",
+  "./media/Photography/Brands/Fabia/Photos/03.jpg",
+  "./media/Photography/Brands/Fabia/Photos/04.jpg",
+  "./media/Photography/Brands/Fabia/Photos/05.jpg",
+  "./media/Photography/Brands/Fabia/Photos/06.jpg",
+  "./media/Photography/Brands/Fabia/Photos/07.jpg",
+  "./media/Photography/Brands/Fabia/Photos/08.jpg",
+  "./media/Photography/Brands/Fabia/Photos/09.jpg",
+  "./media/Photography/Brands/Fabia/Photos/10.jpg",
+  "./media/Photography/Concerts/Esdeekid Tour/Photos/01.jpg",
+  "./media/Photography/Concerts/Esdeekid Tour/Photos/02.jpg",
+  "./media/Photography/Concerts/Esdeekid Tour/Photos/03.jpg",
+  "./media/Photography/Concerts/Esdeekid Tour/Photos/04.jpg",
+  "./media/Photography/Concerts/Esdeekid Tour/Photos/05.jpg"
+]

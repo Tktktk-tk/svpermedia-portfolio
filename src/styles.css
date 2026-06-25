@@ -338,10 +338,18 @@ body::after {
   animation: breathe 2.2s ease-in-out infinite; }
 .loading-fallback em { color: var(--accent); }
 @keyframes breathe { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
-.loading-enter { position: absolute; bottom: 9%; left: 50%; transform: translateX(-50%);
-  background: rgba(10,16,13,0.4); border: 1px solid rgba(217,213,201,0.35);
+.loading-actions { position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.loading-enter { background: rgba(10,16,13,0.4); border: 1px solid rgba(217,213,201,0.35);
   color: var(--ink); border-radius: 999px; padding: 13px 34px; font-size: 12px; font-weight: 700;
   letter-spacing: 0.25em; text-transform: uppercase; transition: all .25s; backdrop-filter: blur(4px); }
+.loading-enter:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.preload-btn { background: transparent; border: 1px solid rgba(217,213,201,0.18); color: var(--muted);
+  border-radius: 999px; padding: 8px 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; transition: all .25s; min-width: 170px; }
+.preload-btn:hover:not(:disabled) { color: var(--ink); border-color: rgba(217,213,201,0.4); }
+.preload-btn:disabled { cursor: default; opacity: 0.9; }
+.preload-btn.done { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
 .loading-enter:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* ============================================================
