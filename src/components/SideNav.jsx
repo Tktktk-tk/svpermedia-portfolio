@@ -1,12 +1,18 @@
-import { useNavigate } from 'react-router-dom'
+import { MEDIUMS } from '../data/structure'
 
-// Vertical About / Contact buttons pinned to the right edge of the screen.
-export default function SideNav() {
-  const nav = useNavigate()
+// Vertical jump buttons — scroll back to a medium's section.
+export default function SideNav({ active, onJump }) {
   return (
-    <div className="side-nav">
-      <button onClick={() => nav('/about')}>about</button>
-      <button onClick={() => nav('/contact')}>contact</button>
-    </div>
+    <nav className="side-nav">
+      {MEDIUMS.map((m) => (
+        <button
+          key={m.id}
+          className={active === m.id ? 'active' : ''}
+          onClick={() => onJump(m.id)}
+        >
+          {m.label}
+        </button>
+      ))}
+    </nav>
   )
 }
