@@ -12,7 +12,9 @@ const MEDIUM_LABEL = { main: 'Videography', vfx: 'VFX', photo: 'Photography' }
 export default function ProjectDetail({ example, onClose, onNavigate }) {
   const m = example.media || {}
   const eng = example.engagement
-  const [muted, setMuted] = useState(true)
+  // index of the single video currently unmuted (null = all muted).
+  // Unmuting one mutes the rest, so audio never overlaps.
+  const [unmutedIdx, setUnmutedIdx] = useState(null)
 
   const videoFiles = useMediaFiles(example.folder, 'Videos', ['mp4', 'webm'])
   const videoCount = videoFiles.length || m.videos || 0
@@ -46,19 +48,26 @@ export default function ProjectDetail({ example, onClose, onNavigate }) {
           <div className="detail-tag">{MEDIUM_LABEL[example.node]}</div>
           <h2 className="detail-title">{example.title}</h2>
 
-          {Array.from({ length: videoCount }).map((_, i) => (
-            <div className="media-tile video" key={`v${i}`}>
-              <span className="tile-label">video {i + 1}</span>
-              {videoFiles[i] ? (
-                <video className="tile-video" src={videoFiles[i]} autoPlay loop muted={muted} playsInline />
-              ) : (
-                <div className="tile-placeholder"><em>insert video</em></div>
-              )}
-              <button className="audio-btn" title={muted ? 'unmute' : 'mute'} onClick={() => setMuted((v) => !v)}>
-                {muted ? '🔇' : '🔊'}
-              </button>
-            </div>
-          ))}
+          {Array.from({ length: videoCount }).map((_, i) => {
+            const isMuted = unmutedIdx !== i
+            return (
+              <div className="media-tile video" key={`v${i}`}>
+                <span className="tile-label">video {i + 1}</span>
+                {videoFiles[i] ? (
+                  <video className="tile-video" src={videoFiles[i]} autoPlay loop muted={isMuted} playsInline />
+                ) : (
+                  <div className="tile-placeholder"><em>insert video</em></div>
+                )}
+                <button
+                  className="audio-btn"
+                  title={isMuted ? 'unmute' : 'mute'}
+                  onClick={() => setUnmutedIdx((cur) => (cur === i ? null : i))}
+                >
+                  {isMuted ? '🔇' : '🔊'}
+                </button>
+              </div>
+            )
+          })}
 
           {m.photos ? <PhotoCarousel folder={example.folder} fallbackCount={m.photos} /> : null}
 

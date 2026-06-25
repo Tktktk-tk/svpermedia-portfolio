@@ -2,7 +2,8 @@
 // Regenerated on every `npm run dev` / `npm run build`.
 export const MEDIA_MANIFEST = {
   "main-salient": {
-    "hasFiles": false
+    "videos": 1,
+    "hasFiles": true
   },
   "main-fabia": {
     "videos": 2,
@@ -15,13 +16,15 @@ export const MEDIA_MANIFEST = {
     "hasFiles": false
   },
   "main-downunder": {
-    "hasFiles": false
+    "videos": 1,
+    "hasFiles": true
   },
   "main-revenge": {
     "hasFiles": false
   },
   "main-esdeekid": {
-    "hasFiles": false
+    "videos": 1,
+    "hasFiles": true
   },
   "main-kraniraivu": {
     "videos": 1,
@@ -54,7 +57,8 @@ export const MEDIA_MANIFEST = {
     "hasFiles": true
   },
   "vfx-2nights": {
-    "hasFiles": false
+    "gifs": 5,
+    "hasFiles": true
   },
   "vfx-kabz": {
     "hasFiles": false
@@ -78,6 +82,7 @@ export const MEDIA_MANIFEST = {
     "hasFiles": false
   },
   "photo-esdeekid": {
-    "hasFiles": false
+    "photos": 5,
+    "hasFiles": true
   }
 }
