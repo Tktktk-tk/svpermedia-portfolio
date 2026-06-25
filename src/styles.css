@@ -1,0 +1,480 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap');
+
+/* ============================================================
+   ROOT + RESET
+   ============================================================ */
+:root {
+  --bg:    #04050a;
+  --bg2:   #08090f;
+  --ink:   #e9edf5;
+  --muted: #696e82;
+  --font:  'Syne', system-ui, -apple-system, sans-serif;
+  --font-label: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+
+body {
+  font-family: var(--font);
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, #0b0e1a, var(--bg) 70%);
+  color: var(--ink);
+  overflow: hidden;
+  cursor: default;
+}
+
+/* Subtle grain overlay — purely CSS, no external image */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9998;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.028;
+  pointer-events: none;
+}
+
+/* ============================================================
+   SHELL
+   ============================================================ */
+.app-shell { position: relative; width: 100%; height: 100%; }
+.page      { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+
+/* ============================================================
+   NUCLEUS BLOB
+   ============================================================ */
+.nucleus {
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   BOTTOM LOGO
+   ============================================================ */
+.bottom-logo {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  z-index: 10; pointer-events: none; opacity: 0.55;
+  display: flex; align-items: center; justify-content: center;
+}
+.bottom-logo img  { height: 28px; object-fit: contain; }
+.bottom-logo span {
+  font-size: 15px; font-weight: 800; letter-spacing: 0.06em;
+  text-transform: lowercase; color: var(--muted);
+}
+
+/* ============================================================
+   NODE ANCHORS
+   ============================================================ */
+.node-anchor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center;
+}
+.cat-node, .ex-node { cursor: pointer; }
+
+/* examples that actually have media — brighter + a gentle pulse to draw the eye */
+.ex-blob.filled { animation: media-pulse 2.8s ease-in-out infinite; }
+@keyframes media-pulse {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(255,255,255,0.0)); }
+  50%      { filter: drop-shadow(0 0 9px rgba(255,255,255,0.30)); }
+}
+
+/* ============================================================
+   NODE LABELS (appear on hover)
+   ============================================================ */
+.node-label {
+  position: absolute; top: 100%; margin-top: 9px;
+  font-family: var(--font-label);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.9);
+  transition: opacity 0.18s ease;
+}
+.node-label.show { opacity: 1; }
+.ex-blob { display: flex; align-items: center; justify-content: center; }
+
+/* Text inside the loading-page nuclei */
+.nucleus-label-wrap {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.nucleus-label {
+  font-family: var(--font-label);
+  font-size: clamp(11px, 1.4vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 0 18px rgba(0,0,0,0.7);
+  text-align: center;
+  line-height: 1.2;
+  padding: 0 14%;
+}
+
+/* Permanent centred labels (map nuclei + category nodes) */
+.blob-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+.center-label {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; pointer-events: none;
+  font-family: var(--font-label);
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 0 14px rgba(0,0,0,0.85);
+  line-height: 1.18;
+  overflow: hidden;
+}
+/* main nodes — bold, larger (hierarchy) */
+.nucleus-center { font-size: clamp(12px, 1.4vw, 17px); font-weight: 700; letter-spacing: 0.005em; padding: 0 13%; }
+/* secondary nodes — regular, smaller, fits inside the circle */
+.cat-center     { font-size: clamp(8px, 0.95vw, 11px); font-weight: 400; letter-spacing: 0.01em; padding: 0 14%; }
+
+/* ============================================================
+   PARALLAX LAYER (map page wrapper)
+   ============================================================ */
+.parallax-layer {
+  position: absolute; inset: 0;
+  pointer-events: none; /* let nodes handle events */
+  z-index: 2;
+}
+.parallax-layer .node-anchor { pointer-events: auto; }
+
+/* ============================================================
+   CONNECTION LINES (SVG)
+   ============================================================ */
+.links-svg { pointer-events: none; z-index: 3; }
+
+.link-path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 0.8;
+  stroke-dasharray: 3 9;
+  stroke-linecap: round;
+}
+.link-path.active {
+  stroke: #ffffff;
+  stroke-width: 1.6;
+  stroke-dasharray: none;
+}
+.filler-path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 0.6;
+  stroke-dasharray: 2 8;
+  stroke-linecap: round;
+}
+.filler-node { pointer-events: none !important; }
+
+/* ============================================================
+   LOADING PAGE
+   ============================================================ */
+.loading-page { cursor: none; }
+.stage { position: absolute; inset: 0; }
+
+.hold-prompt {
+  position: absolute; bottom: 72px; left: 50%;
+  transform: translateX(-50%);
+  text-align: center; user-select: none;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.hold-prompt p {
+  margin: 0;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--muted);
+}
+.hold-bar {
+  width: 220px; height: 5px; border-radius: 5px;
+  background: rgba(255,255,255,0.12); overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.hold-fill {
+  height: 100%; border-radius: 5px; width: 0;
+  background: linear-gradient(90deg, #35b8ff, #b96bff, #ff9d3a);
+  box-shadow: 0 0 14px rgba(185,107,255,0.8);
+  transition: width 0.05s linear;
+}
+.hold-pct {
+  font-size: 10px; letter-spacing: 0.12em; color: var(--muted);
+}
+
+/* ============================================================
+   MAP PAGE
+   ============================================================ */
+.map-page { cursor: crosshair; }
+
+/* ============================================================
+   SIDE NAV
+   ============================================================ */
+.side-nav {
+  position: fixed; right: 16px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 10px; z-index: 40;
+}
+.side-nav button {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  background: transparent; color: var(--muted);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+  padding: 12px 7px; cursor: pointer;
+  font-family: var(--font); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  transition: color 0.2s, border-color 0.2s;
+}
+.side-nav button:hover { color: var(--ink); border-color: rgba(255,255,255,0.28); }
+
+/* ============================================================
+   GO-BACK BUTTON
+   ============================================================ */
+.go-back {
+  position: fixed; left: 18px; top: 18px; z-index: 50;
+  background: transparent; color: var(--muted);
+  border: none; border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding: 4px 0; cursor: pointer;
+  font-family: var(--font); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+.go-back:hover { color: var(--ink); border-color: rgba(255,255,255,0.4); }
+
+/* ============================================================
+   INFO PAGES (About / Contact)
+   ============================================================ */
+.info-page {
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.info-card {
+  max-width: 480px; width: 100%; text-align: center;
+  background: rgba(8,10,18,0.55);
+  border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
+  padding: 44px 40px;
+  backdrop-filter: blur(12px);
+}
+.info-card h1 {
+  font-size: 38px; font-weight: 800; letter-spacing: -0.02em;
+  margin: 0 0 20px; text-transform: lowercase;
+}
+.info-card p { color: var(--muted); line-height: 1.75; font-size: 16px; margin: 0 0 10px; }
+.contact-line { font-size: 18px !important; color: var(--ink) !important; font-weight: 600; }
+.contact-note { font-size: 12px !important; opacity: 0.5; margin-top: 16px; }
+
+/* ============================================================
+   CATEGORY FOCUS OVERLAY
+   ============================================================ */
+.cat-focus-overlay {
+  position: fixed; inset: 0; z-index: 55;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(3,4,9,0.85); backdrop-filter: blur(6px);
+}
+.cat-focus-inner {
+  text-align: center; max-width: 480px; width: 90%;
+}
+.cat-focus-node {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.24em;
+  text-transform: uppercase; display: block; margin-bottom: 10px;
+}
+.cat-focus-title {
+  font-size: clamp(36px, 7vw, 64px); font-weight: 800;
+  letter-spacing: -0.02em; margin: 0 0 36px;
+  line-height: 1;
+}
+.cat-focus-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.cat-focus-item {
+  display: flex; justify-content: space-between; align-items: baseline;
+  width: 100%; padding: 12px 20px;
+  background: transparent; color: var(--ink);
+  border: 1px solid rgba(255,255,255,0.07); border-radius: 10px;
+  cursor: pointer; font-family: var(--font); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.02em; text-align: left;
+  transition: background 0.2s, border-color 0.2s;
+}
+.cat-focus-item:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
+.cfi-title  { color: var(--ink); }
+.cfi-stats  { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: 16px; }
+.cat-focus-hint {
+  margin-top: 28px; font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted); opacity: 0.6;
+}
+
+/* ============================================================
+   FOCUS OVERLAY / CARD
+   ============================================================ */
+.focus-overlay {
+  position: fixed; inset: 0; z-index: 60;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(3,4,9,0.78); backdrop-filter: blur(5px);
+  padding: 22px;
+}
+.focus-card {
+  display: grid; grid-template-columns: 1.55fr 1fr; gap: 32px;
+  width: min(940px, 94vw); max-height: 86vh; overflow-y: auto;
+  background: rgba(8,10,18,0.97);
+  border: 1px solid var(--accent, rgba(255,255,255,0.1));
+  border-radius: 18px; padding: 32px;
+  box-shadow: 0 0 80px rgba(0,0,0,0.7), 0 0 30px color-mix(in srgb, var(--accent, #fff) 8%, transparent);
+  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+
+.focus-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+}
+.focus-title {
+  font-size: clamp(20px, 3.5vw, 30px); font-weight: 800;
+  letter-spacing: -0.02em; margin: 0 0 22px; line-height: 1.1;
+  color: var(--ink);
+}
+
+/* ── Media tiles ── */
+.media-tile {
+  position: relative; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.025);
+  min-height: 160px; margin-bottom: 12px;
+  display: flex; flex-direction: column;
+}
+.tile-label {
+  position: absolute; top: 10px; left: 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted); z-index: 1;
+}
+.tile-video  { width: 100%; flex: 1; object-fit: cover; }
+.tile-placeholder {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+}
+.tile-placeholder em { font-style: normal; font-size: 12px; opacity: 0.55; }
+
+/* ── 3D model viewer tile ── */
+.media-tile.model {
+  min-height: 440px; border-color: rgba(185,107,255,0.4);
+  background: radial-gradient(circle at 50% 40%, rgba(185,107,255,0.08), rgba(255,255,255,0.02));
+}
+.model-canvas { width: 100% !important; flex: 1; min-height: 400px; cursor: grab; }
+.model-canvas:active { cursor: grabbing; }
+
+/* half-size 3D panel (scoped to Srilankan Flag) */
+.media-tile.model.compact { min-height: 220px; }
+.media-tile.model.compact .model-canvas { min-height: 200px; }
+
+.audio-btn {
+  position: absolute; bottom: 10px; right: 10px; z-index: 2;
+  background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 7px; padding: 5px 9px; cursor: pointer; font-size: 13px;
+  transition: background 0.2s;
+}
+.audio-btn:hover { background: rgba(255,255,255,0.12); }
+
+/* ── Photo carousel (portrait-friendly: shows the full media, tall) ── */
+.photo-carousel { margin-bottom: 12px; }
+.carousel-frame  {
+  border-radius: 10px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.02);
+}
+.carousel-img    {
+  display: block; margin: 0 auto;
+  width: auto; max-width: 100%;
+  height: auto; max-height: 72vh;
+  object-fit: contain; border-radius: 10px;
+}
+.carousel-img.hero { max-height: 76vh; }
+.carousel-placeholder {
+  display: none; /* shown by JS via onError or .always class */
+  min-height: 200px; border-radius: 10px;
+  border: 1px dashed rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.02);
+  align-items: center; justify-content: center;
+  color: var(--muted); font-size: 12px;
+}
+.carousel-placeholder.always { display: flex; }
+
+/* ── GIF carousel ── */
+.gif-carousel { margin-bottom: 12px; }
+.gif-frame  {
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(185,107,255,0.25);
+  background: rgba(185,107,255,0.04); min-height: 130px;
+  display: flex; align-items: center; justify-content: center;
+}
+.gif-img  {
+  display: block; margin: 0 auto;
+  width: auto; max-width: 100%;
+  height: auto; max-height: 72vh;
+  object-fit: contain; border-radius: 8px;
+}
+.gif-desc {
+  margin: 8px 0 0; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.04em; color: var(--muted); line-height: 1.5;
+  min-height: 1.5em;
+}
+
+/* Shared carousel controls */
+.carousel-controls {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; margin-top: 8px;
+}
+.carousel-controls button {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 6px;
+  padding: 5px 12px; cursor: pointer; color: var(--ink);
+  font-family: var(--font); font-size: 13px; font-weight: 600;
+  transition: background 0.2s;
+}
+.carousel-controls button:hover { background: rgba(255,255,255,0.12); }
+.carousel-controls span { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; }
+
+/* ── Focus info column ── */
+.focus-info {
+  border-left: 1px solid rgba(255,255,255,0.07);
+  padding-left: 26px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.focus-desc  {
+  font-size: 14px; line-height: 1.7; color: var(--ink);
+  margin: 4px 0 0; opacity: 0.85;
+}
+.focus-block { margin-top: 24px; }
+.focus-block h4 {
+  margin: 0 0 10px; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip  {
+  font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12); color: var(--ink);
+  background: transparent;
+}
+.chip.link {
+  cursor: pointer; color: var(--chip-c);
+  border-color: color-mix(in srgb, var(--chip-c) 40%, transparent);
+  transition: background 0.2s;
+}
+.chip.link:hover { background: color-mix(in srgb, var(--chip-c) 12%, transparent); }
+
+.stats { display: flex; gap: 28px; }
+.stats strong { display: block; font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.stats span   { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; display: block; }
+
+.placeholder-note {
+  margin-top: auto; padding-top: 20px; font-size: 11px; color: var(--muted); line-height: 1.5;
+}
+.placeholder-note code { color: #b96bff; font-size: 11px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 680px) {
+  .focus-card  { grid-template-columns: 1fr; }
+  .focus-info  { border-left: none; padding-left: 0;
+                 border-top: 1px solid rgba(255,255,255,0.07); padding-top: 20px; }
+  .cat-focus-item { flex-direction: column; gap: 4px; }
+  .cfi-stats   { margin-left: 0; }
+}

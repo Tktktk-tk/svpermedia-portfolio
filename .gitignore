@@ -1,0 +1,14 @@
+node_modules
+dist
+.DS_Store
+*.local
+.vite
+
+# Secrets / env — keep any future API keys out of the repo.
+# (This project currently has NO secrets; this is a safeguard for later.)
+.env
+.env.*
+!.env.example
+
+# Deploy tooling
+.vercel
