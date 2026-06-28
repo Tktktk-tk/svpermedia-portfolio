@@ -43,6 +43,8 @@ export default function ProjectDetail({ example, onClose, onNavigate }) {
       >
         <button className="detail-close" onClick={onClose} aria-label="close">✕</button>
 
+        {/* scrolling content (close button stays fixed on the card) */}
+        <div className="detail-scroll">
         {/* media column */}
         <div>
           <div className="detail-tag">{MEDIUM_LABEL[example.node]}</div>
@@ -128,6 +130,7 @@ export default function ProjectDetail({ example, onClose, onNavigate }) {
           ) : null}
 
           <p className="detail-folder">media folder: <code>public/media/{example.folder}/</code></p>
+        </div>
         </div>
       </motion.div>
     </motion.div>
