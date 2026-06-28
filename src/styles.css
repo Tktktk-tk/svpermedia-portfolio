@@ -366,8 +366,8 @@ body::after {
   .medium-intro { max-width: none; }
 }
 
-/* ---------- phones ---------- */
-@media (max-width: 600px) {
+/* ---------- phones (incl. larger / landscape phones) ---------- */
+@media (max-width: 767px) {
   /* header: drop the tagline (it wrapped & crowded the logo), keep the mark */
   .header-tag { display: none; }
   .site-header { padding: 14px 18px; }
