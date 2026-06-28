@@ -357,3 +357,47 @@ body::after {
   .side-nav { right: 10px; gap: 10px; }
   .medium-intro { max-width: none; }
 }
+
+/* ---------- phones ---------- */
+@media (max-width: 600px) {
+  /* header: drop the tagline (it wrapped & crowded the logo), keep the mark */
+  .header-tag { display: none; }
+  .site-header { padding: 14px 18px; }
+  .brand-logo img { height: 30px; }
+
+  /* the vertical side-nav overlapped cards on a narrow screen; the hero's
+     clickable disciplines + scrolling cover navigation on mobile */
+  .side-nav { display: none; }
+
+  /* tighter section rhythm */
+  .hero { padding: 92px 6vw 56px; }
+  .medium-section { padding: 60px 6vw; }
+  .cat-bar { gap: 8px; margin: 28px 0 8px; }
+  .cat-bar button { padding: 7px 14px; font-size: 11px; }
+
+  /* stack the medium heading + intro */
+  .medium-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .medium-intro { font-size: 14px; }
+  .cat-block { padding-top: 40px; }
+
+  /* full-screen detail modal feels right on a phone */
+  .detail-overlay { padding: 0; }
+  .detail-card { width: 100vw; max-width: 100vw; max-height: 100vh; height: 100vh;
+    border-radius: 0; padding: 24px 18px 36px; gap: 22px; }
+  .detail-close { top: 12px; right: 12px; width: 34px; height: 34px; }
+  .detail-title { font-size: clamp(26px, 8vw, 34px); }
+  .stats { gap: 22px; }
+  .carousel-img, .gif-img { height: 56vh; }
+  .media-tile.model { min-height: 320px; }
+
+  /* footer + info modal */
+  .site-footer { padding: 70px 6vw 56px; }
+  .footer-logo img { height: 60px; }
+  .info-overlay { padding: 0; }
+  .info-card { padding: 40px 26px; border-radius: 0; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; }
+  .info-card h2 { font-size: 34px; }
+
+  /* loading: cap the (desktop-tuned 4x) gif so it isn't oversized */
+  .loading-gif { width: min(1200px, 200vw); }
+}
