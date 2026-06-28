@@ -214,6 +214,8 @@ body::after {
   backdrop-filter: blur(6px); box-shadow: 0 4px 14px rgba(0,0,0,0.4);
 }
 .detail-close:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+/* centred close shown only on phones (placed under the media) */
+.detail-close-mobile { display: none; }
 .detail-tag { font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 .detail-title {
   font-family: var(--sans); font-weight: 800; text-transform: uppercase;
@@ -390,8 +392,16 @@ body::after {
   .detail-overlay { padding: 0; }
   .detail-card { width: 100vw; max-width: 100vw; max-height: 100vh; height: 100vh;
     border-radius: 0; }
-  .detail-scroll { grid-template-columns: 1fr; max-height: 100vh; padding: 24px 18px 40px; gap: 22px; }
-  .detail-close { top: 12px; right: 12px; width: 34px; height: 34px; }
+  .detail-scroll { grid-template-columns: 1fr; max-height: 100vh; padding: 24px 18px 40px; gap: 18px; }
+  /* move the close to a centred button under the media */
+  .detail-close { display: none; }
+  .detail-close-mobile {
+    display: flex; align-items: center; justify-content: center; justify-self: center;
+    margin: 4px 0 6px; width: 52px; height: 52px; border-radius: 50%; font-size: 20px;
+    background: rgba(10,16,13,0.72); border: 1px solid rgba(217,213,201,0.4);
+    color: var(--dust-grey); box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  }
+  .detail-close-mobile:active { background: var(--accent); border-color: var(--accent); color: #fff; }
   .detail-title { font-size: clamp(26px, 8vw, 34px); }
   .stats { gap: 22px; }
   .carousel-img, .gif-img { height: 56vh; }

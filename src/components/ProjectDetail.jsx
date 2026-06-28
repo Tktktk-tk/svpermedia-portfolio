@@ -91,6 +91,9 @@ export default function ProjectDetail({ example, onClose, onNavigate }) {
           ))}
         </div>
 
+        {/* mobile-only close, centred under the media */}
+        <button className="detail-close-mobile" onClick={onClose} aria-label="close">✕</button>
+
         {/* info column */}
         <div>
           <p className="detail-desc">{example.description}</p>
