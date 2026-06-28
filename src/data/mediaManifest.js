@@ -76,7 +76,7 @@ export const MEDIA_MANIFEST = {
     "hasFiles": false
   },
   "photo-ces": {
-    "photos": 3,
+    "photos": 5,
     "hasFiles": true
   },
   "photo-consulting": {
@@ -84,10 +84,12 @@ export const MEDIA_MANIFEST = {
     "hasFiles": true
   },
   "photo-uts-pg": {
-    "hasFiles": false
+    "photos": 5,
+    "hasFiles": true
   },
   "photo-uts-ug": {
-    "hasFiles": false
+    "photos": 5,
+    "hasFiles": true
   },
   "photo-downunder": {
     "hasFiles": false
@@ -133,11 +135,23 @@ export const MEDIA_FILES = [
   "./media/Photography/Corporate/Community Engagement Summit/Photos/01.jpg",
   "./media/Photography/Corporate/Community Engagement Summit/Photos/02.jpg",
   "./media/Photography/Corporate/Community Engagement Summit/Photos/03.jpg",
+  "./media/Photography/Corporate/Community Engagement Summit/Photos/04.jpg",
+  "./media/Photography/Corporate/Community Engagement Summit/Photos/05.jpg",
   "./media/Photography/Corporate/Consulting 101/Photos/01.jpg",
   "./media/Photography/Corporate/Consulting 101/Photos/02.jpg",
   "./media/Photography/Corporate/Consulting 101/Photos/03.jpg",
   "./media/Photography/Corporate/Consulting 101/Photos/04.jpg",
   "./media/Photography/Corporate/Consulting 101/Photos/05.jpg",
+  "./media/Photography/Corporate/UTS Postgraduate Studio/Photos/01.jpg",
+  "./media/Photography/Corporate/UTS Postgraduate Studio/Photos/02.jpg",
+  "./media/Photography/Corporate/UTS Postgraduate Studio/Photos/03.jpg",
+  "./media/Photography/Corporate/UTS Postgraduate Studio/Photos/04.jpg",
+  "./media/Photography/Corporate/UTS Postgraduate Studio/Photos/05.jpg",
+  "./media/Photography/Corporate/UTS Undergraduate Studio0/Photos/01.jpg",
+  "./media/Photography/Corporate/UTS Undergraduate Studio0/Photos/02.jpg",
+  "./media/Photography/Corporate/UTS Undergraduate Studio0/Photos/03.jpg",
+  "./media/Photography/Corporate/UTS Undergraduate Studio0/Photos/04.jpg",
+  "./media/Photography/Corporate/UTS Undergraduate Studio0/Photos/05.jpg",
   "./media/Photography/Concerts/Esdeekid Tour/Photos/01.jpg",
   "./media/Photography/Concerts/Esdeekid Tour/Photos/02.jpg",
   "./media/Photography/Concerts/Esdeekid Tour/Photos/03.jpg",
