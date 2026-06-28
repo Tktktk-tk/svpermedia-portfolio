@@ -3,31 +3,28 @@ import { motion } from 'framer-motion'
 import { MEDIA_FILES } from '../data/mediaManifest'
 
 // Intro loader. Shows /public/brand/intro/intro.gif (your looping logo
-// animation) — it plays on repeat until the visitor clicks Enter.
-// A "Preload all media" button under Enter downloads every media file in the
-// background so projects open instantly once inside.
+// animation). Clicking Enter preloads ALL media in the background (showing
+// progress), then enters the site once everything is ready.
 export default function Loading({ onDone }) {
   const [gifOk, setGifOk] = useState(true)
   const total = MEDIA_FILES.length
-  const [pf, setPf] = useState({ state: 'idle', done: 0 }) // idle | loading | done
+  const [loading, setLoading] = useState(false)
+  const [done, setDone] = useState(0)
 
-  function preloadAll() {
-    if (pf.state !== 'idle' || total === 0) return
-    setPf({ state: 'loading', done: 0 })
+  function enter() {
+    if (loading) return
+    if (total === 0) { onDone(); return }
+    setLoading(true)
+    setDone(0)
     Promise.all(
       MEDIA_FILES.map((f) =>
         fetch(encodeURI(f))
-          .then((r) => r.blob())   // read fully -> warms the browser cache
+          .then((r) => r.blob())          // read fully -> warms the browser cache
           .catch(() => null)
-          .finally(() => setPf((p) => ({ ...p, done: p.done + 1 }))),
+          .finally(() => setDone((d) => d + 1)),
       ),
-    ).then(() => setPf((p) => ({ ...p, state: 'done' })))
+    ).then(() => onDone())                  // everything cached -> enter the site
   }
-
-  const preloadLabel =
-    pf.state === 'loading' ? `Loading ${pf.done} / ${total}…`
-    : pf.state === 'done' ? 'All media ready ✓'
-    : 'Preload all media'
 
   return (
     <motion.div
@@ -48,16 +45,9 @@ export default function Loading({ onDone }) {
       )}
 
       <div className="loading-actions">
-        <button className="loading-enter" onClick={onDone}>Enter</button>
-        {total > 0 && (
-          <button
-            className={`preload-btn${pf.state === 'done' ? ' done' : ''}`}
-            onClick={preloadAll}
-            disabled={pf.state !== 'idle'}
-          >
-            {preloadLabel}
-          </button>
-        )}
+        <button className="loading-enter" onClick={enter} disabled={loading}>
+          {loading ? `Loading ${done} / ${total}…` : 'Enter'}
+        </button>
       </div>
     </motion.div>
   )

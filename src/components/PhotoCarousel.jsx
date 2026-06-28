@@ -34,8 +34,10 @@ export default function PhotoCarousel({ folder, fallbackCount = 0 }) {
           transition={{ duration: 0.22 }}
         >
           {hasReal ? (
-            <img src={files[idx]} alt={isHero ? 'hero' : `photo ${idx + 1}`}
-                 className={`carousel-img${isHero ? ' hero' : ''}`} />
+            // NB: no "hero" class — it collides with the global .hero (homepage)
+            // rule's min-height:100vh, which over-sized the first photo.
+            <img src={files[idx]} alt={isHero ? 'hero photo' : `photo ${idx + 1}`}
+                 className="carousel-img" />
           ) : (
             <div className="carousel-placeholder always">
               <span>{isHero ? 'hero image' : `photo ${idx + 1}`}</span>

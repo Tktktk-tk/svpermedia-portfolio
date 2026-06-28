@@ -9,22 +9,28 @@ export const MEDIA_MANIFEST = {
     "videos": 2,
     "hasFiles": true
   },
-  "main-svnty7": {
-    "hasFiles": false
-  },
   "main-ces": {
-    "hasFiles": false
+    "videos": 1,
+    "hasFiles": true
+  },
+  "main-neptune": {
+    "videos": 4,
+    "hasFiles": true
+  },
+  "main-consulting": {
+    "videos": 1,
+    "hasFiles": true
   },
   "main-downunder": {
     "videos": 1,
     "hasFiles": true
   },
-  "main-revenge": {
-    "hasFiles": false
-  },
   "main-esdeekid": {
     "videos": 1,
     "hasFiles": true
+  },
+  "main-marah": {
+    "hasFiles": false
   },
   "main-kraniraivu": {
     "videos": 1,
@@ -34,9 +40,6 @@ export const MEDIA_MANIFEST = {
     "hasFiles": false
   },
   "main-amar": {
-    "hasFiles": false
-  },
-  "main-frenchtips": {
     "hasFiles": false
   },
   "main-medusa": {
@@ -60,9 +63,6 @@ export const MEDIA_MANIFEST = {
     "gifs": 5,
     "hasFiles": true
   },
-  "vfx-kabz": {
-    "hasFiles": false
-  },
   "vfx-backrooms": {
     "videos": 1,
     "models": 1,
@@ -72,13 +72,24 @@ export const MEDIA_MANIFEST = {
     "photos": 10,
     "hasFiles": true
   },
+  "photo-fabia2": {
+    "hasFiles": false
+  },
   "photo-ces": {
+    "photos": 3,
+    "hasFiles": true
+  },
+  "photo-consulting": {
+    "photos": 5,
+    "hasFiles": true
+  },
+  "photo-uts-pg": {
+    "hasFiles": false
+  },
+  "photo-uts-ug": {
     "hasFiles": false
   },
   "photo-downunder": {
-    "hasFiles": false
-  },
-  "photo-revenge": {
     "hasFiles": false
   },
   "photo-esdeekid": {
@@ -91,6 +102,12 @@ export const MEDIA_FILES = [
   "./media/Videography/Brands/Project Salient/Videos/01.mp4",
   "./media/Videography/Brands/Fabia/Videos/01.mp4",
   "./media/Videography/Brands/Fabia/Videos/02.mp4",
+  "./media/Videography/Corporate/Community Engagement Summit/Videos/01.mp4",
+  "./media/Videography/Corporate/Neptune Swimming School/Videos/01.mp4",
+  "./media/Videography/Corporate/Neptune Swimming School/Videos/02.mp4",
+  "./media/Videography/Corporate/Neptune Swimming School/Videos/03.mp4",
+  "./media/Videography/Corporate/Neptune Swimming School/Videos/04.mp4",
+  "./media/Videography/Corporate/Consulting 101/Videos/01.mp4",
   "./media/Videography/Concerts/YT Down Under Tour/Videos/01.mp4",
   "./media/Videography/Concerts/Esdeekid Tour/Videos/01.mp4",
   "./media/Videography/Events/Kraniraivu/Videos/01.mp4",
@@ -113,6 +130,14 @@ export const MEDIA_FILES = [
   "./media/Photography/Brands/Fabia/Photos/08.jpg",
   "./media/Photography/Brands/Fabia/Photos/09.jpg",
   "./media/Photography/Brands/Fabia/Photos/10.jpg",
+  "./media/Photography/Corporate/Community Engagement Summit/Photos/01.jpg",
+  "./media/Photography/Corporate/Community Engagement Summit/Photos/02.jpg",
+  "./media/Photography/Corporate/Community Engagement Summit/Photos/03.jpg",
+  "./media/Photography/Corporate/Consulting 101/Photos/01.jpg",
+  "./media/Photography/Corporate/Consulting 101/Photos/02.jpg",
+  "./media/Photography/Corporate/Consulting 101/Photos/03.jpg",
+  "./media/Photography/Corporate/Consulting 101/Photos/04.jpg",
+  "./media/Photography/Corporate/Consulting 101/Photos/05.jpg",
   "./media/Photography/Concerts/Esdeekid Tour/Photos/01.jpg",
   "./media/Photography/Concerts/Esdeekid Tour/Photos/02.jpg",
   "./media/Photography/Concerts/Esdeekid Tour/Photos/03.jpg",

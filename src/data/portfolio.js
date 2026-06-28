@@ -78,15 +78,21 @@ export const EXAMPLES = [
     description: 'Flagship clothing campaign — full creative direction, shoot and edit.',
   },
   {
-    id: 'main-svnty7', cat: 'main-brands', node: 'main', title: 'Svnty7',
-    media: { videos: 1 }, engagement: { views: 7000, likes: 149 }, real: false,
-    description: 'Streetwear brand promo.',
-  },
-  {
     id: 'main-ces', cat: 'main-corp', node: 'main', title: 'Community Engagement Summit',
     media: { videos: 1 }, real: false,
     links: ['photo-ces'],
     description: 'Corporate event recap video and coverage.',
+  },
+  {
+    id: 'main-neptune', cat: 'main-corp', node: 'main', title: 'Neptune Swimming School',
+    media: { videos: 4 }, real: false,
+    description: 'Promotional video series for Neptune Swimming School.',
+  },
+  {
+    id: 'main-consulting', cat: 'main-corp', node: 'main', title: 'Consulting 101',
+    media: { videos: 1 }, real: false,
+    links: ['photo-consulting'],
+    description: 'Corporate promotional video for Consulting 101.',
   },
   {
     id: 'main-downunder', cat: 'main-concerts', node: 'main', title: 'YT: Down Under Tour',
@@ -95,16 +101,15 @@ export const EXAMPLES = [
     description: 'Tour recap — live concert videography.',
   },
   {
-    id: 'main-revenge', cat: 'main-concerts', node: 'main', title: 'RevengeOnTheWorld Tour',
-    media: { videos: 1 }, engagement: { views: 4860, likes: 141 }, real: true,
-    links: ['photo-revenge'],
-    description: 'Tour aftermovie capturing the energy of the RevengeOnTheWorld live shows.',
-  },
-  {
     id: 'main-esdeekid', cat: 'main-concerts', node: 'main', title: 'Esdeekid Tour',
     media: { videos: 1 }, engagement: { views: 10000, likes: 542 }, real: false,
     links: ['photo-esdeekid'],
     description: 'Concert recap for the Esdeekid tour.',
+  },
+  {
+    id: 'main-marah', cat: 'main-concerts', node: 'main', title: 'Marah the Scientist',
+    media: { videos: 1 }, real: false,
+    description: 'Live concert videography for Marah the Scientist.',
   },
   {
     id: 'main-kraniraivu', cat: 'main-events', node: 'main', title: 'Kraniraivu',
@@ -122,11 +127,6 @@ export const EXAMPLES = [
     id: 'main-amar', cat: 'main-music', node: 'main', title: "'Amar' Reels",
     media: { videos: 4 }, engagement: { views: 50200, likes: 1500 }, real: false,
     description: 'Reel series for the Amar release.',
-  },
-  {
-    id: 'main-frenchtips', cat: 'main-music', node: 'main', title: "'French Tips' Reels",
-    media: { videos: 4 }, engagement: { views: 100000, likes: 50000 }, real: false,
-    description: 'High-performing reel series.',
   },
   {
     id: 'main-medusa', cat: 'main-music', node: 'main', title: "'Medusa' Music Video",
@@ -176,12 +176,6 @@ export const EXAMPLES = [
     ],
   },
   {
-    id: 'vfx-kabz', cat: 'vfx-music', node: 'vfx', title: 'Kabz Music Video',
-    media: { gifs: 1, models: 1 }, real: false,
-    software: ['Blender'],
-    description: 'Moving Sri Lankan flag simulation rendered in 3D.',
-  },
-  {
     id: 'vfx-backrooms', cat: 'vfx-music', node: 'vfx', title: 'Srilankan Flag',
     media: { videos: 1, models: 1 }, real: true,
     software: ['Blender'],
@@ -195,19 +189,34 @@ export const EXAMPLES = [
     description: 'Brand stills from the Fabia campaign.',
   },
   {
+    id: 'photo-fabia2', cat: 'photo-brands', node: 'photo', title: 'FABIA .2',
+    media: { photos: 10 }, real: false,
+    description: 'Additional brand stills from the Fabia campaign.',
+  },
+  {
     id: 'photo-ces', cat: 'photo-corp', node: 'photo', title: 'Community Engagement Summit',
     media: { photos: 5 }, real: false, links: ['main-ces'],
     description: 'Corporate event photography.',
   },
   {
+    id: 'photo-consulting', cat: 'photo-corp', node: 'photo', title: 'Consulting 101',
+    media: { photos: 10 }, real: false, links: ['main-consulting'],
+    description: 'Corporate photography for Consulting 101.',
+  },
+  {
+    id: 'photo-uts-pg', cat: 'photo-corp', node: 'photo', title: 'UTS Postgraduate Studio',
+    media: { photos: 5 }, real: false,
+    description: 'Studio photography for the UTS postgraduate studio.',
+  },
+  {
+    id: 'photo-uts-ug', cat: 'photo-corp', node: 'photo', title: 'UTS Undergraduate Studio0',
+    media: { photos: 5 }, real: false,
+    description: 'Studio photography for the UTS undergraduate studio.',
+  },
+  {
     id: 'photo-downunder', cat: 'photo-concerts', node: 'photo', title: 'YT: Down Under Tour',
     media: { photos: 10 }, real: false, links: ['main-downunder'],
     description: 'Concert stills from the Down Under tour.',
-  },
-  {
-    id: 'photo-revenge', cat: 'photo-concerts', node: 'photo', title: 'RevengeOnTheWorld Tour',
-    media: { photos: 10 }, real: true, links: ['main-revenge'],
-    description: 'Live concert photography from the RevengeOnTheWorld tour.',
   },
   {
     id: 'photo-esdeekid', cat: 'photo-concerts', node: 'photo', title: 'Esdeekid Tour',
