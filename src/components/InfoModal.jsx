@@ -34,9 +34,8 @@ export default function InfoModal({ kind, onClose }) {
         ) : (
           <>
             <h2>contact</h2>
-            <p className="big">+XX XXXXXXXXX</p>
-            <p className="big">XXXXXXXXX@XXXXX.XXX</p>
-            <p className="note">(update these in src/components/InfoModal.jsx)</p>
+            <p className="big">@svpermedia on Instagram</p>
+            <p className="big">svpermedia@gmail.com</p>
           </>
         )}
       </motion.div>
